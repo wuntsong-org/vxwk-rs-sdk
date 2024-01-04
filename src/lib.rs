@@ -19,8 +19,8 @@ use url::form_urlencoded;
 /// use crate::VxwkConfig;
 /// pub fn main(){
 ///     let confg = VxwkConfig{
-///         access_key: "开放者access_key".to_string(),
-///         access_secret: "开放者access_secret".to_owned(),
+///         access_key: "开发者access_key".to_string(),
+///         access_secret: "开发者access_secret".to_owned(),
 ///         endpoint: "节点baseutl".to_string(),
 ///     };
 ///     let vxwk_api = super::VxwkAPI::new(confg);

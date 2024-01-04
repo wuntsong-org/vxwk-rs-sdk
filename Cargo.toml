@@ -1,6 +1,6 @@
 [package]
 name = "vxwk-rs-sdk"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "vxwk项目的rust版本SDK,支持全部api"
 keywords = ["vxwk"]
