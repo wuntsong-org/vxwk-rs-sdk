@@ -7,7 +7,7 @@ keywords = ["vxwk"]
 author="广州桓创信息科技有限公司"
 readme = "README.md"
 repository = "https://github.com/wuntsong-org/vxwk-rs-sdk"
-license = "LICENSE"
+license-file = "LICENSE.txt"
 homepage = "https://github.com/wuntsong-org"
 
 
