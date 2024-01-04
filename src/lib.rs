@@ -7,14 +7,34 @@ use serde::Serialize;
 use std::collections::HashMap;
 use thiserror::Error;
 use urand::generate_unique_number;
-// use urand::generate_unique_number;
 use url::ParseError;
 use url::Url;
-//模块
-// mod timestamp;
-// mod uhmac;
-// mod urand;
 use url::form_urlencoded;
+///  这里是Vxwk项目对外开放的所有Api 
+/// 简单使用案列
+/// ```
+///     use std::collections::HashMap;
+
+/// use tokio::runtime;
+/// use crate::VxwkConfig;
+/// pub fn main(){
+///     let confg = VxwkConfig{
+///         access_key: "开放者access_key".to_string(),
+///         access_secret: "开放者access_secret".to_owned(),
+///         endpoint: "节点baseutl".to_string(),
+///     };
+///     let vxwk_api = super::VxwkAPI::new(confg);
+///     let runtime = tokio::runtime::Runtime::new().unwrap();
+///     runtime.block_on(async{
+///         let res = vxwk_api.short_link_list(HashMap::new()).await;
+///         println!("{:?}",res);
+///     });
+/// }```
+pub struct VxwkAPI {
+    client: reqwest::Client,
+    config: VxwkConfig,
+    accept_header: Option<HashMap<String, String>>,
+}
 
 mod model {
     pub(crate) mod livecodefile {
@@ -34,7 +54,6 @@ mod model {
 
 mod timestamp {
     use std::time::{SystemTime, UNIX_EPOCH};
-
     pub fn get_timestamp() -> u64 {
         // 获取当前时间
         let current_time = SystemTime::now();
@@ -141,11 +160,7 @@ impl VxwkConfig {
     }
 }
 
-pub struct VxwkAPI {
-    client: reqwest::Client,
-    config: VxwkConfig,
-    accept_header: Option<HashMap<String, String>>,
-}
+
 
 impl VxwkAPI {
     pub fn new(config: VxwkConfig) -> Self {
@@ -685,7 +700,6 @@ impl VxwkAPI {
     /// 删除短链
     /// 
     pub async fn short_link_delete(&self, id: &str) -> Result<serde_json::Value, VxwkError> {
-
         let mut query_params = HashMap::new();
         query_params.insert("id", id);
         let result = self
@@ -693,6 +707,4 @@ impl VxwkAPI {
             .await?;
         return Ok(result);
     }
-
-
 }
